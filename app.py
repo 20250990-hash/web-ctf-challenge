@@ -3,7 +3,7 @@ import hashlib
 
 app = Flask(__name__)
 
-REAL_FLAG = "FLAG{real_super_secret_flag}"
+REAL_FLAG = "FLAG{I_love_Defense}"
 SECRET_SALT = "x9a!Kp#3LmZ"
 
 def generate_key():
