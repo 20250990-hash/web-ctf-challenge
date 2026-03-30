@@ -2,7 +2,7 @@ from flask import Flask, request, abort
 
 app = Flask(__name__)
 
-REAL_FLAG = "FLAG{real_super_secret_flag}"
+REAL_FLAG = "FLAG{I_LOVE_Defnese_flag}"
 SECRET_TOKEN = "ctf_secret_777"
 
 @app.route("/")
