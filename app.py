@@ -1,13 +1,16 @@
 from flask import Flask, request, abort
+import hashlib
 
 app = Flask(__name__)
 
-REAL_FLAG = "FLAG{I_LOVE_Defnese_flag}"
-SECRET_TOKEN = "ctf_secret_777"
+REAL_FLAG = "FLAG{real_super_secret_flag}"
+SECRET_SALT = "x9a!Kp#3LmZ"
 
-@app.route("/")
-def home():
-    return "CTF FLAG SERVER"
+def generate_key():
+    return hashlib.sha256("admin_access_granted".encode()).hexdigest()
+
+def generate_token(key):
+    return hashlib.sha256((key + SECRET_SALT).encode()).hexdigest()
 
 @app.route("/get_flag")
 def get_flag():
@@ -17,10 +20,10 @@ def get_flag():
     if not key or not token:
         abort(403)
 
-    if key == "letmein123" and token == SECRET_TOKEN:
+    real_key = generate_key()
+    real_token = generate_token(real_key)
+
+    if key == real_key and token == real_token:
         return REAL_FLAG
 
     abort(403)
-
-if __name__ == "__main__":
-    app.run()
