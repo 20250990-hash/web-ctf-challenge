@@ -12,10 +12,10 @@ def generate_key():
 def generate_token(key):
     return hashlib.sha256((key + SECRET_SALT).encode()).hexdigest()
 
-@app.route("/get_flag")
+@app.route("/get_flag", methods=["POST"])
 def get_flag():
-    key = request.args.get("key")
-    token = request.args.get("token")
+    key = request.form.get("key")
+    token = request.form.get("token")
 
     if not key or not token:
         abort(403)
