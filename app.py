@@ -1,6 +1,5 @@
 from flask import Flask, request, abort
 import hashlib
-import os
 
 app = Flask(__name__)
 
@@ -32,5 +31,4 @@ def get_flag():
     abort(403)
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 10000))
-    app.run(host="0.0.0.0", port=port)
+    app.run(port=5001)
