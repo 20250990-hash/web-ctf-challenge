@@ -10,7 +10,7 @@ SHARED_SECRET = os.environ.get('CTF_SHARED_SECRET', 'defense-love-secret-2024')
 TOKEN_TTL     = int(os.environ.get('TOKEN_TTL', '30'))   # 기본 30초
 
 BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
-IMAGE_PATH = os.path.join(BASE_DIR, 'flag_image.png')
+IMAGE_PATH = os.path.join(BASE_DIR, "flag_image.png")
 
 _TOKEN_STORE: dict[str, float] = {}
 
@@ -37,9 +37,9 @@ def _consume_token(token: str) -> bool:
     del _TOKEN_STORE[token]
     return True
 
-def _image_b64() -> str:
-    with open(IMAGE_PATH, 'rb') as f:
-        return base64.b64encode(f.read()).decode()
+def _image_b64():
+    with open(IMAGE_PATH, "rb") as f:
+        return base64.b64encode(f.read()).decode("utf-8")
 
 @app.route('/')
 def index():
